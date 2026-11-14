@@ -71,12 +71,12 @@ def add_note(notes):
     note_id = next_id(notes) #it will get the next id of the note and return the id and exit the function
     notes.append([note_id, title, content]) #it will append the note_id , title and content into the notes list and return the notes list and exit the function
     write_notes(notes) #it will save the notes into the file and exit the function this function is decleared above and we are just using it here 
-    print(f"Note {note_id} added successfully.") #it will display the message that the note is added successfully and it will display the note_id of the note which is added
+    print(f"Note saved. ID:{note_id} | {title}") #it will display the message that the note is added successfully and it will display the note_id of the note which is added
 
 """This function is created to view the notes in a proper format and it will check if the notes list is empty or not and if it is empty then it will display the message that there are no notes to display and exit the function """
 def view_notes(notes):
     if not notes: #it will check if the notes list is empty or not and if it is empty then it will display the message that there are no notes to display and exit the function 
-        print("No notes to display.")
+        print("No notes found.")
         return
     print("\nID    | Title") #it will display the header of the notes list in a proper format
     print("-" * 40) #it will display a line of 40 charecters to seperate the header from the notes list
@@ -131,6 +131,7 @@ def delete_note(notes):
     if not note:
         print("Note not found")
         return
+    write_notes(notes)
     if input("Delete this note? (y/n): ").strip().lower()=="y":
         notes.remove(note)
         write_notes(notes)
